@@ -55,15 +55,12 @@ const registerUser=async(req,res)=>{
         console.log(error)
         res.json({success:false,message:error.message})
     }
-
 }
-
 //Api for user Login
 const loginUser=async(req,res)=>{
     try {
         const {email,password}=req.body
         const user=await userModel.findOne({email})
-
         if(!user){
             return res.json({success:false,message:'User dos not exist'})
         }
@@ -218,14 +215,11 @@ const cancelAppointment=async(req,res)=>{
         await expertModel.findByIdAndUpdate(docId,{slots_booked})
 
         res.json({success:true,message:'Appointment Cancelled'})
-
     }catch(error){
         console.log(error)
         res.json({success:false,message:error.message})
-
     }
 }
-
 const razorpayInstance=new razorpay({
     key_id:process.env.RAZORPAY_KEY_ID,
     key_secret:process.env.RAZORPAY_KEY_SECRET
@@ -502,19 +496,6 @@ const pdfOptions = {
 };
 
 // Function to create PDF
-const createPDF = (htmlContent) => {
-    return new Promise((resolve, reject) => {
-        pdf.create(htmlContent, pdfOptions).toBuffer((err, buffer) => {
-            if (err) {
-                console.error("PDF Generation Error:", err);
-                reject(err);
-            } else {
-                resolve(buffer);
-            }
-        });
-    });
-};
-
 const sendEmail = async (req, res) => {
     try {
         const { appointmentId, token } = req.body;
@@ -533,10 +514,6 @@ const sendEmail = async (req, res) => {
         const userHtmlContent = createUserHTMLTemplate(userData, docData, slotDate, slotTime);
         const expertHtmlContent = createDoctorHTMLTemplate(userData, docData, slotDate, slotTime);
 
-        // Generate PDFs
-        const userPdfBuffer = await createPDF(userHtmlContent);
-        const expertPdfBuffer = await createPDF(expertHtmlContent);
-
         // Create email transporter
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -551,12 +528,7 @@ const sendEmail = async (req, res) => {
             from: process.env.EMAIL,
             to: userData.email,
             subject: 'Your Appointment Confirmation',
-            html: userHtmlContent,
-            attachments: [{
-                filename: 'appointment-confirmation.pdf',
-                content: userPdfBuffer,
-                contentType: 'application/pdf'
-            }]
+            html: userHtmlContent // Sending HTML content only, no PDF attachment
         };
 
         // Send email to expert
@@ -564,12 +536,7 @@ const sendEmail = async (req, res) => {
             from: process.env.EMAIL,
             to: docData.email,
             subject: 'New Appointment Scheduled',
-            html: expertHtmlContent,
-            attachments: [{
-                filename: 'new-appointment.pdf',
-                content: expertPdfBuffer,
-                contentType: 'application/pdf'
-            }]
+            html: expertHtmlContent // Sending HTML content only, no PDF attachment
         };
 
         // Send both emails
@@ -591,7 +558,6 @@ const sendEmail = async (req, res) => {
         });
     }
 };
-
 
 
 //api to schedule a meeting and generate a link and return that link
