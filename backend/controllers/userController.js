@@ -11,8 +11,7 @@ import crypto from 'crypto';
 import reviewModel from '../models/reviewModel.js';
 import eventModel from '../models/eventModel.js'
 import videoModel from '../models/videoModel.js'
-//import pdf from 'html-pdf';
-import puppeteer from 'puppeteer';
+import pdf from 'html-pdf';
 import workshopModel from '../models/WorkshopModel.js'
 
 
@@ -286,7 +285,6 @@ const verifyRazorpay=async(req,res)=>{
     }
 }
 
-// HTML template for User PDF
 const createUserHTMLTemplate = (userData, docData, slotDate, slotTime) => `
 <!DOCTYPE html>
 <html>
@@ -491,34 +489,28 @@ const createDoctorHTMLTemplate = (userData, docData, slotDate, slotTime) => `
 </html>
 `;
 
-// Function to create PDF using Puppeteer
-const createPDF = async (htmlContent) => {
-    try {
-        const browser = await puppeteer.launch({
-            headless: "new",  // Use the latest headless mode
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome",  // Ensure correct Chrome path
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        });
-
-        const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-
-        const pdfBuffer = await page.pdf({
-            format: 'Letter',
-            margin: {
-                top: '20px',
-                right: '20px',
-                bottom: '20px',
-                left: '20px',
-            },
-        });
-
-        await browser.close();
-        return pdfBuffer;
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-        throw error;
+// PDF configuration options
+const pdfOptions = {
+    format: 'Letter',
+    border: {
+        top: '20px',
+        right: '20px',
+        bottom: '20px',
+        left: '20px'
     }
+};
+
+// Function to create PDF
+const createPDF = (htmlContent) => {
+    return new Promise((resolve, reject) => {
+        pdf.create(htmlContent, pdfOptions).toBuffer((err, buffer) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(buffer);
+            }
+        });
+    });
 };
 
 const sendEmail = async (req, res) => {
