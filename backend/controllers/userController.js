@@ -13,7 +13,7 @@ import eventModel from '../models/eventModel.js'
 import videoModel from '../models/videoModel.js'
 import pdf from 'html-pdf';
 import workshopModel from '../models/WorkshopModel.js'
-
+import phantomjs from 'phantomjs-prebuilt'
 
 
 
@@ -497,7 +497,8 @@ const pdfOptions = {
         right: '20px',
         bottom: '20px',
         left: '20px'
-    }
+    },
+    phantomPath: phantomjs.path.replace(/\.exe$/, "") // Ensures correct path on Linux
 };
 
 // Function to create PDF
@@ -505,6 +506,7 @@ const createPDF = (htmlContent) => {
     return new Promise((resolve, reject) => {
         pdf.create(htmlContent, pdfOptions).toBuffer((err, buffer) => {
             if (err) {
+                console.error("PDF Generation Error:", err);
                 reject(err);
             } else {
                 resolve(buffer);
