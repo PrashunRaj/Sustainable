@@ -18,7 +18,7 @@ import VideoUploadForm from './pages/Admin/VideoUploadForm';
 import AddEvent from './pages/Admin/AddEvent';
 import AllEvents from './pages/Admin/AllEvents';
 import AddWorkShop from './pages/Admin/AddWorkShop';
-import AllWorkshop from './pages/Admin/AllWorkShop';
+import AllWorkshop from './pages/Admin/AllWorkshop';
 
 const App = () => {
   const {aToken}=useContext(AdminContext)
