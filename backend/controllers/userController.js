@@ -495,9 +495,11 @@ const createDoctorHTMLTemplate = (userData, docData, slotDate, slotTime) => `
 const createPDF = async (htmlContent) => {
     try {
         const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Required for Render.com
+            headless: "new",  // Use the latest headless mode
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome",  // Ensure correct Chrome path
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
+
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
 
