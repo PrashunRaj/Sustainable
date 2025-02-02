@@ -1,4 +1,3 @@
-
 import validator from 'validator'
 import bcrypt from 'bcryptjs';
 import {v2 as cloudinary} from 'cloudinary'
