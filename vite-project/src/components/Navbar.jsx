@@ -43,7 +43,7 @@ const Navbar = () => {
         {/* Admin Panel Link */}
         <li>
           <a
-            href="http://localhost:5174"
+            href="https://sustainable-admin.onrender.com"
             target="_blank"
             rel="noopener noreferrer"
             className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600 hover:text-primary\"
