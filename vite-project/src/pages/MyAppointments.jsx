@@ -69,16 +69,8 @@ const MyAppointments = () => {
 
             getUserAppointments()
             navigate('/myAppointments')
-            const { data: emailData } = await axios.post(backendUrl + '/api/user/send-email', {
-              appointmentId: appointmentId, // Use receipt or order id as appointment ID
-              token
-            }, { headers: { token } });
-
-            if (emailData.success) {
-              toast.success('Confirmation email sent!');
-            } else {
-              toast.error('Error sending confirmation email.');
-            }
+           
+           
 
             if (serviceType === 'Virtual') {
               //generate meeting link
@@ -109,6 +101,21 @@ const MyAppointments = () => {
                 toast.error('Failed to generate meeting link.');
               }
 
+            }
+            try{
+              const { data: emailData } = await axios.post(backendUrl + '/api/user/send-email', {
+                appointmentId: appointmentId, // Use receipt or order id as appointment ID
+                token
+              }, { headers: { token } });
+  
+              if (emailData.success) {
+                toast.success('Confirmation email sent!');
+              } else {
+                toast.error('Error sending confirmation email.');
+              }
+
+            }catch(error){
+              toast.error("Email generation failed");
             }
 
 
