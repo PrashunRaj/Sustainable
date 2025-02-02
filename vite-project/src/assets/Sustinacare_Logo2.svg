@@ -1,0 +1,12 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <!-- Leaf Icon -->
+  <g>
+    <path d="M60,30 C50,40 40,50 30,60 Q50,70 60,50 Q70,70 90,60 C80,50 70,40 60,30 Z" fill="#4CAF50" />
+    <path d="M60,30 C65,25 70,20 75,15 C80,25 85,35 90,60 C85,50 75,40 60,30 Z" fill="#81C784"/>
+  </g>
+  <!-- Text -->
+  <text x="120" y="65" font-family="Arial, sans-serif" font-size="36" fill="#333" font-weight="bold">
+    EarthWise
+  </text>
+</svg>

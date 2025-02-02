@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="45" fill="#4A90E2" />
+  
+  <!-- Graduation Cap -->
+  <path d="M25 45 L50 35 L75 45 L50 55 Z" fill="#FFFFFF"/>
+  <path d="M50 55 L50 65 L60 60 L60 50" fill="#FFFFFF"/>
+  <rect x="48" y="65" width="4" height="8" fill="#FFFFFF"/>
+  
+  <!-- Multiple People Silhouettes -->
+  <circle cx="35" cy="60" r="8" fill="#FFFFFF"/>
+  <path d="M27 75 C27 68 43 68 43 75" fill="#FFFFFF"/>
+  
+  <circle cx="50" cy="60" r="8" fill="#FFFFFF"/>
+  <path d="M42 75 C42 68 58 68 58 75" fill="#FFFFFF"/>
+  
+  <circle cx="65" cy="60" r="8" fill="#FFFFFF"/>
+  <path d="M57 75 C57 68 73 68 73 75" fill="#FFFFFF"/>
+  
+  <!-- Stars representing expertise -->
+  <path d="M20 25 L22 30 L27 30 L23 33 L25 38 L20 35 L15 38 L17 33 L13 30 L18 30 Z" fill="#FFFFFF"/>
+  <path d="M80 25 L82 30 L87 30 L83 33 L85 38 L80 35 L75 38 L77 33 L73 30 L78 30 Z" fill="#FFFFFF"/>
+</svg>

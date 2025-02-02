@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+  <!-- Leaf Icon -->
+  <g>
+    <path d="M60,30 C50,40 40,50 30,60 Q50,70 60,50 Q70,70 90,60 C80,50 70,40 60,30 Z" fill="#4CAF50" />
+    <path d="M60,30 C65,25 70,20 75,15 C80,25 85,35 90,60 C85,50 75,40 60,30 Z" fill="#81C784"/>
+  </g>
+  
+  <!-- Text: EarthWise -->
+  <text x="92" y="55" font-family="Arial, sans-serif" font-size="36" fill="#333" font-weight="bold">
+    EarthWise
+  </text>
+  
+  <!-- Text: Dashboard Panel -->
+  <text x="92" y="72" font-family="Arial, sans-serif" font-size="18" fill="#666" font-weight="normal">
+    Dashboard Panel
+  </text>
+</svg>

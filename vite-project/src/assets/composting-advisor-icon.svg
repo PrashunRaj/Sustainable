@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#f5f0e6"/>
+  
+  <!-- Compost bin/layers -->
+  <path d="M60 60 L140 60 L130 160 L70 160 Z" fill="#8d6e63"/>
+  
+  <!-- Compost layers -->
+  <path d="M65 90 L135 90 L133 110 L67 110 Z" fill="#4caf50"/>
+  <path d="M67 120 L133 120 L131 140 L69 140 Z" fill="#795548"/>
+  
+  <!-- Decomposition arrows -->
+  <path d="M75 70 A20 20 0 0 1 95 70" fill="none" stroke="#33691e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M105 70 A20 20 0 0 1 125 70" fill="none" stroke="#33691e" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Measurement lines -->
+  <line x1="45" y1="80" x2="45" y2="140" stroke="#455a64" stroke-width="2"/>
+  <line x1="40" y1="80" x2="50" y2="80" stroke="#455a64" stroke-width="2"/>
+  <line x1="40" y1="110" x2="50" y2="110" stroke="#455a64" stroke-width="2"/>
+  <line x1="40" y1="140" x2="50" y2="140" stroke="#455a64" stroke-width="2"/>
+  
+  <!-- Clipboard outline -->
+  <rect x="150" y="90" width="30" height="40" rx="4" fill="#90a4ae"/>
+  <rect x="155" y="85" width="20" height="5" rx="2" fill="#90a4ae"/>
+  
+  <!-- Clipboard lines -->
+  <line x1="155" y1="100" x2="175" y2="100" stroke="#eceff1" stroke-width="2"/>
+  <line x1="155" y1="110" x2="175" y2="110" stroke="#eceff1" stroke-width="2"/>
+  <line x1="155" y1="120" x2="175" y2="120" stroke="#eceff1" stroke-width="2"/>
+</svg>

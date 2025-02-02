@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Clipboard Base -->
+  <rect x="20" y="12" width="24" height="32" 
+        fill="#f5f5f5" 
+        stroke="#333" 
+        stroke-width="2"/>
+  
+  <!-- Clipboard Top -->
+  <rect x="26" y="8" width="12" height="6" 
+        fill="#666" 
+        stroke="#333" 
+        stroke-width="2"/>
+  
+  <!-- House Outline on Clipboard -->
+  <path d="M26 20 L32 16 L38 20 L38 28 L26 28 Z" 
+        fill="none" 
+        stroke="#2171CD" 
+        stroke-width="1.5"/>
+  
+  <!-- Energy Arrows -->
+  <path d="M28 24 L30 22 L32 24 L34 22 L36 24" 
+        fill="none" 
+        stroke="#FF9900" 
+        stroke-width="1.5"
+        stroke-linejoin="round"/>
+  
+  <!-- Magnifying Glass -->
+  <circle cx="42" cy="36" r="8" 
+          fill="none" 
+          stroke="#333" 
+          stroke-width="2"/>
+  <line x1="48" y1="42" x2="52" y2="46" 
+        stroke="#333" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Chart Lines on Clipboard -->
+  <line x1="26" y1="32" x2="36" y2="32" 
+        stroke="#333" 
+        stroke-width="1"/>
+  <line x1="26" y1="36" x2="32" y2="36" 
+        stroke="#333" 
+        stroke-width="1"/>
+  
+  <!-- Energy Rating Symbol -->
+  <path d="M24 42 L28 38 L32 42" 
+        fill="none" 
+        stroke="#4CAF50" 
+        stroke-width="1.5"
+        stroke-linejoin="round"/>
+
+  <!-- Temperature Indicator -->
+  <circle cx="16" cy="24" r="4" 
+          fill="#FF5722" 
+          stroke="#333" 
+          stroke-width="1"/>
+  <line x1="16" y1="21" x2="16" y2="27" 
+        stroke="white" 
+        stroke-width="1"/>
+  <line x1="16" y1="24" x2="19" y2="24" 
+        stroke="white" 
+        stroke-width="1"/>
+</svg>
