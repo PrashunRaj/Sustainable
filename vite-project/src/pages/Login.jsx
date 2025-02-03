@@ -17,12 +17,15 @@ const Login=()=>{
     event.preventDefault()
     try{
       if(state=='Sign Up'){
-
-        const {data}=await axios.post(backendUrl+'/api/user/register',{name,password,email})
+        console.log(backendUrl)
+        const {data}=await axios.post(backendUrl+'api/user/register',{name,password,email})
+        
         if(data.success){
           localStorage.setItem('token',data.token)
           setToken(data.token)
         }else{
+        
+          console.log(data.message);
           toast.error(data.message)
         }
 
