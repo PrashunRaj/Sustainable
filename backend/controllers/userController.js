@@ -19,6 +19,7 @@ import axios from 'axios'
 const ABSTRACT_API_KEY = process.env.ABSTRACT_API_KEY;
 const registerUser = async (req, res) =>{
     try {
+        console.log("in try");
         const { name, email, password } = req.body;
        
 
@@ -31,20 +32,23 @@ const registerUser = async (req, res) =>{
         if (!validator.isEmail(email)) {
             return res.json({ success: false, message: "Enter a valid email" });
         }
-      
+        console.log("error");
         // Verify email existence using AbstractAPI
         const apiResponse = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&email=${email}`);
+        console.log("error1");
        
         if (!apiResponse.data.deliverability || apiResponse.data.deliverability === "UNDELIVERABLE") {
             return res.json({ success: false, message: "This email address does not exist. Please use a real email." });
         }
+        console.log("error2");
        
         // Check if the email is already registered
         const existingUser = await userModel.findOne({ email });
         console.log(existingUser)
-        if (existingUser) {
+        if (existingUser){
             return res.json({ success: false, message: "Email is already registered" });
         }
+        console.log("error");
         
 
 
