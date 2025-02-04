@@ -14,102 +14,47 @@ import videoModel from '../models/videoModel.js'
 import pdf from 'html-pdf';
 import workshopModel from '../models/WorkshopModel.js'
 import phantomjs from 'phantomjs-prebuilt'
-import axios from 'axios'
 
-const ABSTRACT_API_KEY = process.env.ABSTRACT_API_KEY;
-const registerUser = async (req, res) =>{
-    try {
-        const { name, email, password } = req.body;
-       
 
-        // Check for missing fields
-        if (!name || !password || !email) {
-            return res.json({ success: false, message: "Missing details" });
+
+//Api to register user
+const registerUser=async(req,res)=>{
+    try{
+        const {name,email,password}=req.body
+
+        if(!name || !password || !email){
+            return res.json({success:false,message:"Missing Details"})
+
+        }
+        if(!validator.isEmail(email)){
+            return res.json({success:false,message:"enter a valid email"})
+
+        }
+        if(password.length<8){
+            return res.json({success:false,message:"enter a strong password"})
         }
 
-        // Validate email format
-        if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Enter a valid email" });
+        //hashing user password
+        const salt=await bcrypt.genSalt(10)
+        const hashedPassword=await bcrypt.hash(password,salt)
+
+        const userData={
+            name,
+            email,
+            password:hashedPassword
         }
-      
-        // Verify email existence using AbstractAPI
-        const apiResponse = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&email=${email}`);
-       
-        if (!apiResponse.data.deliverability || apiResponse.data.deliverability === "UNDELIVERABLE") {
-            return res.json({ success: false, message: "This email address does not exist. Please use a real email." });
-        }
-       
-        // Check if the email is already registered
-        const existingUser = await userModel.findOne({ email });
-        console.log(existingUser)
-        if (existingUser) {
-            return res.json({ success: false, message: "Email is already registered" });
-        }
-        
+        const newUser=new userModel(userData)
+        const user=await newUser.save()
+
+        const token=jwt.sign({id:user._id},process.env.JWT_SECRET)
+        res.json({success:true,token})
 
 
-        // Check password strength
-        if (password.length < 8) {
-            return res.json({ success: false, message: "Enter a strong password (minimum 8 characters)" });
-        }
-
-        // Hash the user's password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        // Create new user
-        const newUser = new userModel({ name, email, password: hashedPassword });
-        const user = await newUser.save();
-
-        // Generate JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-
-        // Send success response with token
-        return res.status(201).json({ success: true, token });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ success: false, message: "Internal Server Error" });
+    }catch(error){
+        console.log(error)
+        res.json({success:false,message:error.message})
     }
-};
-
-// //Api to register user
-// const registerUser=async(req,res)=>{
-//     try{
-//         const {name,email,password}=req.body
-
-//         if(!name || !password || !email){
-//             return res.json({success:false,message:"Missing Details"})
-
-//         }
-//         if(!validator.isEmail(email)){
-//             return res.json({success:false,message:"enter a valid email"})
-
-//         }
-//         if(password.length<8){
-//             return res.json({success:false,message:"enter a strong password"})
-//         }
-
-//         //hashing user password
-//         const salt=await bcrypt.genSalt(10)
-//         const hashedPassword=await bcrypt.hash(password,salt)
-
-//         const userData={
-//             name,
-//             email,
-//             password:hashedPassword
-//         }
-//         const newUser=new userModel(userData)
-//         const user=await newUser.save()
-
-//         const token=jwt.sign({id:user._id},process.env.JWT_SECRET)
-//         res.json({success:true,token})
-
-
-//     }catch(error){
-//         console.log(error)
-//         res.json({success:false,message:error.message})
-//     }
-// }
+}
 //Api for user Login
 const loginUser=async(req,res)=>{
     try {
