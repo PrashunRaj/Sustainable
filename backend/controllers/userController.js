@@ -16,7 +16,7 @@ import workshopModel from '../models/WorkshopModel.js'
 import phantomjs from 'phantomjs-prebuilt'
 import axios from 'axios'
 
-const ABSTRACT_API_KEY = process.env.ABSTRACT_API_KEY;
+const ABSTRACT_API_KEY ="8db91e56d38d479cb6b278ea0a0102ab";
 const registerUser = async (req, res) =>{
     try {
         const { name, email, password } = req.body;
